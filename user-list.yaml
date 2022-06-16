@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: userlist
+  namespace: db-dev
+data:
+  users.txt: |
+    "admin" "SCRAM-SHA-256$4096:CxUsGBDE2HsLTffy8UITNA==$ac0VUSaY8rx+5vSobFZUyqYglepubYictMx2x/kCz5c=:5Fd136mKyYhojF1HdRk5uT0KTyj7YiuMENfuDBr+AEc="

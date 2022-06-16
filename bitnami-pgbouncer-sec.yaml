@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgbouncer-env
+  namespace: db-dev
+data:
+  POSTGRESQL_USERNAME: "postgres"
+  POSTGRESQL_PASSWORD: "md513a7e6c4f27815337cf39e6df95a3b5d"

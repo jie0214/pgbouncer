@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  DB_HOST: d2FsbGV0LWRldi1wb3N0Z3Jlc3FsLmRiLWRldg==
+  DB_PASSWORD: cXpkdGpIVFVJUQ==
+  DB_USER: cG9zdGdyZXM=
+kind: Secret
+metadata:
+  name: pgbouncer-env
+  namespace: db-dev

@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgbouncer
+  namespace: db-dev
+  labels:
+    app: pgbouncer
+spec:
+  revisionHistoryLimit: 10  # removes old replicasets for deployment rollbacks
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 0  # Avoid Terminating and ContainerCreating at the same time
+  selector:
+    matchLabels:
+      app: pgbouncer
+  template:
+    metadata:
+      labels:
+        app: pgbouncer
+    spec:
+      # Optional: keep the POD close to the apps:
+      #nodeSelector:
+      #  purpose: apps
+      containers:
+        - name: pgbouncer
+          image: bitnami/pgbouncer:1.17.0
+          #imagePullPolicy: Always
+          ports:
+            - name: postgresql
+              containerPort: 5432
+          # envFrom:
+          #   - secretRef:
+          #      name: pgbouncer-env
+          envFrom:
+            - configMapRef:
+                name: pgbouncer-env
+          env:
+            # - name: POSTGRESQL_USERNAME
+            #   value: admin
+            # - name: POSTGRESQL_PASSWORD
+            #   value: Pws1234!
+            - name: POSTGRESQL_HOST
+              value: wallet-dev-postgresql.db-dev
+            - name: POSTGRESQL_DATABASE
+              value: postgres
+            - name: PGBOUNCER_POOL_MODE
+              value: session
+            - name: PGBOUNCER_SERVER_RESET_QUERY
+              value: DISCARD ALL
+            - name: PGBOUNCER_AUTH_TYPE
+              value: md5
+            - name: PGBOUNCER_MAX_CLIENT_CONN
+              value: "1000"
+            # - name: PGBOUNCER_IGNORE_STARTUP_PARAMETERS
+            #   value: ignore_startup_parameters
+          # livenessProbe:
+          #   tcpSocket:
+          #     port: 5432
+          #   periodSeconds: 60
+          # lifecycle:
+          #   preStop:
+          #     exec:
+          #       # Allow existing queries clients to complete within 120 seconds
+          #       command: ["/bin/sh", "-c", "killall -INT pgbouncer && sleep 120"]
+          # securityContext:
+          #   allowPrivilegeEscalation: false
+          #   capabilities:
+          #     drop: ['all']
+          resources:
+            limits:
+              cpu: "1"
+              memory: 512Mi
+            requests:
+              cpu: 500m
+              memory: 256Mi
+          # volumeMounts:
+      #      - name: conf
+      #        mountPath: /opt/bitnami/pgbouncer/conf/pgbouncer.ini
+      #        subPath: pgbouncer.ini
+      #      - name: userlist
+      #        readOnly: true
+      #        mountPath: /opt/bitnami/pgbouncer/conf/userlist.txt
+      #        subPath: users.txt
+      # volumes:
+      #  - name: conf
+      #    configMap:
+      #      name: conf
+      #  - name: userlist
+      #    configMap:
+      #      name: userlist
