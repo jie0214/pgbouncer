@@ -1,0 +1,63 @@
+version: '3.1'
+services:
+  db:
+    image: bitnami/postgresql
+    restart: always
+    container_name: db
+    environment:
+      BITMAMI_DEBUG: "false"
+      POSTGRESQL_PORT_NUMBER: "5432"
+      POSTGRESQL_VOLUME_DIR: "/bitnami/postgresql"
+      PGDATA: "/bitnami/postgresql/data"
+      POSTGRES_POSTGRES_PASSWORD: "postgres"
+      POSTGRES_USER: "admin"
+      POSTGRES_PASSWORD: "postgres@123"
+      TZ: "Asia/Taipei"
+      POSTGRESQL_ENABLE_LDAP: "no"
+      POSTGRESQL_ENABLE_TLS: "no"
+      POSTGRESQL_LOG_HOSTNAME: "false"
+      POSTGRESQL_LOG_CONNECTIONS: "false"
+      POSTGRESQL_PGAUDIT_LOG_CATALOG: "off"
+      POSTGRESQL_CLIENT_MIN_MESSAGES: "error"
+      POSTGRESQL_MAX_CONNECTIONS: '1000'
+    ports:
+      - 5432:5432
+    volumes:
+      - ./bitnami/postgresql:/bitnami/postgresql
+
+  bitnami_bouncer:
+    image: bitnami/pgbouncer:1.17.0
+    container_name: bitnami_bouncer
+    ports:
+      - 6432:6432
+    environment: 
+      POOL_MODE: session
+      POSTGRESQL_HOST: db
+      POSTGRESQL_PORT: "5432"
+      POSTGRESQL_DATABASE: postgres
+      SERVER_RESET_QUERY: DISCARD ALL
+      MAX_CLIENT_CONN: "1000"
+      POSTGRESQL_USERNAME: "postgres"
+      POSTGRESQL_PASSWORD: "postgres"
+      PGBOUNCER_PORT: "6432"
+      PGBOUNCER_BIND_ADDRESS: 0.0.0.0
+      PGBOUNCER_IGNORE_STARTUP_PARAMETERS: extra_float_digits
+      PGBOUNCER_AUTH_TYPE: trust
+      PGBOUNCER_SET_DATABASE_USER: yes
+      PGBOUNCER_SET_DATABASE_PASSWORD: yes
+    volumes:
+     - ./pgbouncer/conf/:/bitnami/pgbouncer/conf/
+  
+  # bouncer:
+  #   image: pgbouncer/pgbouncer
+  #   container_name: bouncer
+  #   ports:
+  #     - 5439:5439
+  #   environment:
+  #     PGBOUNCER_LISTEN_PORT: "5439"
+  #     DATABASES: postgres
+  #     HOST: db
+  #     PORT: "5432"
+  #     USER: test_user
+
+    
