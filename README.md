@@ -127,6 +127,33 @@ volumes:
 
 修改`pgbouncer.ini`及`user_list`
 
+測試用user_list
+
+```bash
+"postgres" "postgres"
+"test_user" "test"
+```
+
+測試用pgbouncer.ini
+
+```bash
+[databases]
+postgres=host=db port=5432 user=postgres password=postgres dbname=postgres auth_user=postgres
+testdb=host=db port=5432 user=test_user password=test dbname=testdb auth_user=test_user
+
+[pgbouncer]
+listen_port=6432
+listen_addr=0.0.0.0
+auth_file=/opt/bitnami/pgbouncer/conf/userlist.txt
+auth_type=md5
+pidfile=/opt/bitnami/pgbouncer/tmp/pgbouncer.pid
+logfile=/opt/bitnami/pgbouncer/logs/pgbouncer.log
+admin_users=postgres
+client_tls_sslmode=disable
+server_tls_sslmode=disable
+ignore_startup_parameters=extra_float_digits
+```
+
 目錄需修改權限 chown 1001:1001 ./conf
 
 ## POSTGRESQL COMMAND
