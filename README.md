@@ -1,6 +1,6 @@
 ## POSTGRESQL CREATE
 
-```docker
+```yaml
 version: '3.1'
 services:
   db:
@@ -33,7 +33,7 @@ services:
 
 ## PGBOUNCER CREATE
 
-```docker
+```yaml
 
 version: '3.1'
 services:
@@ -59,6 +59,14 @@ services:
       PGBOUNCER_SET_DATABASE_PASSWORD: yes
 ```
 
+## K8S PGBOUNCER
+
+須給檔案權限
+
+```yaml
+securityContext:
+  fsGroup: 1001
+```
 
 
 ## PGBOUNCER_ISSUR
@@ -118,9 +126,9 @@ pgbouncer 08:40:57.08 INFO  ==> ** Starting PgBouncer **
 2022-08-30 08:41:58.473 UTC [1] WARNING C-0x40000fc120: (nodb)/test_user@172.18.0.1:62598 pooler error: password authentication failed
 ```
 
-MultiUser 解決方式
+## MultiUser 解決方式
 
-```docker
+```yaml
 volumes:
   - ./pgbouncer/conf/:/bitnami/pgbouncer/conf/
 ```
@@ -140,6 +148,8 @@ volumes:
 [databases]
 postgres=host=db port=5432 user=postgres password=postgres dbname=postgres auth_user=postgres
 testdb=host=db port=5432 user=test_user password=test dbname=testdb auth_user=test_user
+<dbname>=host=<db_host> port=5432 dbname=<databases_name>
+#帳號密碼可放置於user_list即可
 
 [pgbouncer]
 listen_port=6432
