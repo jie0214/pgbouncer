@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: userlist
+  namespace: db
+data:
+  userlist.txt: |
+    "postgres" "postgres"
+    "admin" "password"
+    "test_user" "test"
+    "cert_user" "test"
