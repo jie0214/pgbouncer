@@ -69,7 +69,7 @@ securityContext:
 ```
 
 
-## PGBOUNCER_ISSUR
+## PGBOUNCER_ISSUE
 ---
 
 pgbouncer 如果不設定 `POSTGRESQL_PASSWORD`，會出現下列錯誤
