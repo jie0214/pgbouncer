@@ -8,4 +8,4 @@ data:
     "postgres" "postgres"
     "admin" "password"
     "test_user" "test"
-    "cert_user" "test"
+    "cert_user" "cert"
