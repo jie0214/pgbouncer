@@ -37,28 +37,28 @@ spec:
           #   - configMapRef:
           #       name: pgbouncer-env
           env:
-            - name: POSTGRESQL_USERNAME
-              value: postgres
+          #   - name: POSTGRESQL_USERNAME
+          #     value: postgres
             - name: POSTGRESQL_PASSWORD
               value: postgres
             - name: POSTGRESQL_HOST
               value: postgresql-svc.db
-            - name: POSTGRESQL_DATABASE
-              value: postgres
-            - name: PGBOUNCER_POOL_MODE
-              value: session
-            - name: POSTGRESQL_PORT
-              value: "5432"
+          #   - name: POSTGRESQL_DATABASE
+          #     value: postgres
+            # - name: PGBOUNCER_POOL_MODE
+            #   value: session
+            # - name: POSTGRESQL_PORT
+            #   value: "5432"
             - name: PGBOUNCER_PORT
               value: "6432"
-            - name: PGBOUNCER_SERVER_RESET_QUERY
-              value: DISCARD ALL
-            - name: PGBOUNCER_AUTH_TYPE
-              value: trust
-            - name: PGBOUNCER_MAX_CLIENT_CONN
-              value: "1000"
-            - name: PGBOUNCER_IGNORE_STARTUP_PARAMETERS
-              value: extra_float_digits
+            # - name: PGBOUNCER_SERVER_RESET_QUERY
+            #   value: DISCARD ALL
+            # - name: PGBOUNCER_AUTH_TYPE
+            #   value: scram-sha-256
+            # - name: PGBOUNCER_MAX_CLIENT_CONN
+            #   value: "1000"
+            # - name: PGBOUNCER_IGNORE_STARTUP_PARAMETERS
+            #   value: extra_float_digits
             # - name: PGBOUNCER_IGNORE_STARTUP_PARAMETERS
             #   value: ignore_startup_parameters
           # livenessProbe:

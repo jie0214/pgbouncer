@@ -7,14 +7,15 @@ data:
   pgbouncer.ini: |
     [databases]
     postgres=host=postgresql-svc.db port=5432 dbname=postgres
-    testdb=host=postgresql-svc.db port=5432 user=test_user password=test dbname=testdb
+    testdb=host=postgresql-svc.db port=5432 dbname=testdb
     certdb=host=postgresql-svc.db port=5432 dbname=certdb
+    apidb=host=postgresql-svc.db port=5432 dbname=apidb
 
     [pgbouncer]
     listen_port=6432
     listen_addr=0.0.0.0
     auth_file=/opt/bitnami/pgbouncer/conf/userlist.txt
-    auth_type=trust
+    auth_type=scram-sha-256
     pidfile=/opt/bitnami/pgbouncer/tmp/pgbouncer.pid
     logfile=/opt/bitnami/pgbouncer/logs/pgbouncer.log
     admin_users=postgres
