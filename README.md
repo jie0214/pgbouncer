@@ -142,6 +142,12 @@ volumes:
 "test_user" "test"
 ```
 
+sha-256查詢
+
+```sql
+select * from pg_shadow;
+```
+
 測試用pgbouncer.ini
 
 ```bash

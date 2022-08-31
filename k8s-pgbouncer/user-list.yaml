@@ -5,7 +5,8 @@ metadata:
   namespace: db
 data:
   userlist.txt: |
-    "postgres" "postgres"
-    "admin" "password"
-    "test_user" "test"
-    "cert_user" "cert"
+    "postgres" "SCRAM-SHA-256$4096:eDA7ZirIEMTEUJ01iTz7Gw==$0Wx4XMR3NdBtJY4zG5vkW40HH4pJjadRmRhTYzAO1JU=:jrVsvOdWJsypv/kyrB2MTiQ/Y9hmZT5PzQIwbehbXwE="
+    "admin" "SCRAM-SHA-256$4096:rISdFyCXeob8XgFFikl2qA==$+8+ABdcMA07Y5wYe51pSYdjSzWYXJwuoRk2Rsy3GztU=:+twJFEewpj2VPnlBRrNXXCDz0bua2eFqNMTCxIT2lLc="
+    "cert_user" "SCRAM-SHA-256$4096:y+nedcmSrM8tV8O0P9L0+A==$zQeRiFSWojI6maldsSNK1IStj2UuFD62Hjz1wTZ37nA=:1ad85bSQv+KF3SRBV1LgBZIAHH64mituCVDNjncnQVo="
+    "test_user" "SCRAM-SHA-256$4096:BWCpVR/HKqPI+WswcsZeUA==$ZOOVdweXTTyLxnDAmcTxzbUsG6bh7ovPk996lXy2k7o=:beMzI/7yNm5iVa/IBpjiCt0QusN4LIY+L4yzaIGndLY="
+    "api" "SCRAM-SHA-256$4096:xBf7Zfam4U9YxZZrdQ3hug==$jNDVZQqfLImtLlAwQHG/UEFogMSAa3BqOmzaLDoAFRM=:+GJEz0DBBkx29MHnmKEo9OGWGyTZAbPeRaG44ktCxSg="
